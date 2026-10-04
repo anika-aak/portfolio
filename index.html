@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anika AK — Portfolio</title>
+<meta name="description" content="Anika AK's engineering and design portfolio.">
+<style>
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:grid;place-items:center;background:#f8f6f1;color:#282824;font-family:Georgia,"Times New Roman",serif;padding:32px}
+main{width:100%;max-width:620px}
+.eyebrow{font:12px/1.6 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#70685f}
+h1{font-size:clamp(44px,8vw,70px);font-weight:400;line-height:1.1;margin:20px 0}
+.description{font-size:21px;line-height:1.6;max-width:470px}
+.rule{height:1px;background:#d5cec3;margin:32px 0}
+a{color:inherit;text-underline-offset:5px}
+.button{display:inline-block;padding:14px 20px;background:#30302b;color:white;border-radius:3px;text-decoration:none;font:15px/1.4 Arial,sans-serif}
+.small{font:14px/1.7 Arial,sans-serif;color:#70685f}
+[hidden]{display:none!important}
+footer{margin-top:36px}
+</style>
+</head>
+<body>
+<main>
+<p class="eyebrow">Engineering &amp; design</p>
+<h1>Anika AK</h1>
+<p class="description">Selected projects and engineering work.</p>
+<div class="rule"></div>
+<div id="available" hidden>
+<a class="button" href="./portfolio.pdf">View portfolio PDF</a>
+<p class="small">Opens the portfolio document in your browser.</p>
+</div>
+<p class="small" id="pending">My portfolio is being prepared. Please check back soon.</p>
+<footer class="small"><a href="https://www.linkedin.com/in/anika-ak/">LinkedIn</a></footer>
+</main>
+<script>
+fetch("./portfolio.pdf", {method:"HEAD", cache:"no-store"})
+.then(response => {
+ if (response.ok && (response.headers.get("content-type") || "").includes("application/pdf")) {
+  document.getElementById("available").hidden=false;
+  document.getElementById("pending").hidden=true;
+ }
+})
+.catch(() => {});
+</script>
+</body>
+</html>
